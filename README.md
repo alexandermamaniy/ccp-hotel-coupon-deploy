@@ -42,7 +42,7 @@ sudo apt install docker docker-compose
 ```
 ### Excute the docker-compose file
 ```shell
-docker-compose -f docker-compose.production.yml up
+docker-compose -f docker-compose.staging.yml up
 ```
 
 ## About AWS Lambdas functions
