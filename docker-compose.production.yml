@@ -9,7 +9,7 @@ services:
     networks:
       - network_main_net
     restart: always
-    env_file: .env.production
+    env_file: .env.staging
     volumes:
       - .:/hotelcoupon
       - /hotelcoupon/__pycache__/
