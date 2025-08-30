@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  web:
+    image: akey96/hotelcoupon_web:latest
+    command: >
+      sh -c "
+          python -m gunicorn --workers 3 --bind 0.0.0.0:8000 --timeout 120  hotelcoupon.wsgi:application"
+    networks:
+      - network_main_net
+    restart: always
+    env_file: .env.production
+    volumes:
+      - .:/hotelcoupon
+      - /hotelcoupon/__pycache__/
+  nginx:
+    image: akey96/hotelcoupon_nginx:latest
+    command: >
+      sh -c "
+          nginx -g 'daemon off;'"
+    restart: always
+    networks:
+      - network_main_net
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+networks:
+  network_main_net:
+    name: network_main_net
